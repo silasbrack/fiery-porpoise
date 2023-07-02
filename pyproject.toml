@@ -1,0 +1,55 @@
+[project]
+name = "fiery-porpoise"
+version = "0.1.0"
+authors = [{ name="Silas Brack", email="silasbrack@gmail.com" }]
+description = ""
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "dagster",
+    "dagster-postgres",
+    "polars[pyarrow]",
+    "great-expectations",
+    "python-dotenv",
+    "influxdb",
+    "dbt-core",
+    "dbt-postgres",
+    "duckdb",
+    "urllib3==1.26.16",  # To avoid inconsistencies between dev and prod
+]
+
+[project.optional-dependencies]
+dev = [
+    "dagit",
+    "pytest",
+    "pytest-cov",
+    "pytest-sugar",
+    "pre-commit",
+    "black",
+    "ruff",
+    "pyright",
+    "tox",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]  # PEP 508 specifications.
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.dagster]
+module_name = "orchestration"
+
+[tool.ruff]
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "C", # flake8-comprehensions
+    "B", # flake8-bugbear
+]
+ignore = [
+    "E501", # line too long, handled by black
+]

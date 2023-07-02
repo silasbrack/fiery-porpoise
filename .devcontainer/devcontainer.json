@@ -1,0 +1,13 @@
+{
+    "name": "Python 3.11",
+    "image": "python:3.11.3-bullseye",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "hashicorp.terraform",
+                "redhat.vscode-yaml"
+            ]
+        }
+    },
+    "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}; pip install --upgrade pip setuptools wheel pip-tools pre-commit; pip-sync dev-requirements.txt prod-requirements.txt; pip install --editable .; pre-commit install; pip check"
+}
